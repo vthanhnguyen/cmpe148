@@ -1,3 +1,5 @@
+
+
 from socket import *
 import sys # In order to terminate the program
 serverSocket = socket(AF_INET, SOCK_STREAM)
@@ -32,3 +34,7 @@ while True:
         #Fill in end
 serverSocket.close()
 sys.exit()#Terminate the program after sending the corresponding data
+
+
+
+Hello there 
