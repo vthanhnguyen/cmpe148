@@ -1,10 +1,10 @@
 from socket import *
 
 msg = "\r\n I love computer networks!"
-endmsg = "\r\n.\r\n"
 
 # Choose a mail server (e.g. Google mail server) and call it mailserver
-mailServer = ('localhost',12345)
+mailServer = ('10.0.0.1',9879) #(default gateway, randomport)
+
 # Create socket called clientSocket and establish a TCP connection with mailserver
 clientSocket = socket(AF_INET,SOCK_STREAM)
 clientSocket.connect(mailServer)
@@ -22,9 +22,9 @@ if recv1[:3] != '250': #250 is used for an ack
  print('250 reply not received from server.')
  
 # Send MAIL FROM command and print server response.
-mailFrom = "MAIL FROM: <anyemailid@gmail.com> \r\n"
+mailFrom = "MAIL FROM: <vthanhnguyen95@gmail.com> \r\n"
 clientSocket.send(mailFrom.encode())
-recv2 = clientSocket.recv(1024)
+recv2 = clientSocket.recv(1024).decode()
 print("After MAIL FROM command: "+recv2)
 if recv1[:3] != '250':
     print('250 reply not received from server.')
@@ -32,7 +32,7 @@ if recv1[:3] != '250':
 # Send RCPT TO command and print server response.
 rcptTo = "RCPT TO: <destination@gmail.com> \r\n"
 clientSocket.send(rcptTo.encode())
-recv3 = clientSocket.recv(1024)
+recv3 = clientSocket.recv(1024).decode()
 print("After RCPT TO command: "+recv3)
 if recv1[:3] != '250':
     print('250 reply not received from server.')
@@ -40,7 +40,7 @@ if recv1[:3] != '250':
 # Send DATA command and print server response.
 data = "DATA\r\n"
 clientSocket.send(data.encode())
-recv4 = clientSocket.recv(1024)
+recv4 = clientSocket.recv(1024).decode()
 print("After DATA command: "+recv4)
 
 if recv1[:3] != '250':
@@ -48,9 +48,9 @@ if recv1[:3] != '250':
 
 # Send message data.
 message = input('Enter message: ')
-endOfMessage = '.'
-clientSocket.send(message + endOfMessage)
-recv5 = clientSocket.recv(1024)
+endmsg = "\r\n.\r\n"
+clientSocket.send(message + endmsg)
+recv5 = clientSocket.recv(1024).decode()
 
 print("Send Message Command: "+recv4)
 
