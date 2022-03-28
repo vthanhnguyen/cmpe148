@@ -3,7 +3,7 @@ from socket import *
 msg = "\r\n I love computer networks!"
 
 # Choose a mail server (e.g. Google mail server) and call it mailserver
-mailServer = ('10.0.0.1',9879) #(default gateway, randomport)
+mailServer = ('smtp.gmail.com', 587)
 
 # Create socket called clientSocket and establish a TCP connection with mailserver
 clientSocket = socket(AF_INET,SOCK_STREAM)
@@ -49,7 +49,7 @@ if recv1[:3] != '250':
 # Send message data.
 message = input('Enter message: ')
 endmsg = "\r\n.\r\n"
-clientSocket.send(message + endmsg)
+clientSocket.send(message.encode() + endmsg.encode())
 recv5 = clientSocket.recv(1024).decode()
 
 print("Send Message Command: "+recv4)
