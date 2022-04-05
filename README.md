@@ -1,4 +1,4 @@
-Lab 3:SMTP LAB
+Lab 4: ICMP Pinger Lab
 
 How to run: 
 
