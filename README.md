@@ -1,11 +1,12 @@
-Project Group Name: TKD
-Project Proposal: Use Arduino to transmit data and display/control it on a group-made web app.
+CMPE 148 Project: Arduino Data Communication Between Server and Client
 
+How to prepare node_modules and package dependencies:
+    npm init
+    npm install serialport
 
+Now, inside of package.json, we're using serial port version 9.0.1
+So add that in there and install the node_modules needed by typing:
+    npm install
 
-The purpose of this project is to use valuable tools we learned throughout our college career such as using our software skills to create a web-based application for our UI and using our hardware skills to set up an Arduino which includes IoT devices that will gather data. This project correlates with computer networks because we will have two computerized devices such as our computer and our Arduino that will exchange data with each other. We can use ports/sockets to communicate with the devices. All students will be required to purchase either an Arduino or an Elegoo (depending on the students' financial situation) to complete this project.
-
-
-
-
-
+To start the server:
+    node app.js
