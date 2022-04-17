@@ -16,11 +16,9 @@ def checksum(string):
         csum = csum + thisVal
         csum = csum & 0xffffffff
         count = count + 2
-
     if countTo < len(string):
         csum = csum + ord(string[len(string) - 1])
         csum = csum & 0xffffffff
-
     csum = (csum >> 16) + (csum & 0xffff)
     csum = csum + (csum >> 16)
     answer = ~csum
@@ -38,22 +36,16 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
             return "Request timed out."
 
         timeReceived = time.time()
-        recPacket, addr = mySocket.recvfrom(1024) 
-
-        #Fetch the ICMP header from the IP packet
+        recPacket, addr = mySocket.recvfrom(1024)
         #Fill in start
-        header = recPacket[20:28]
-        ptype, code, checksum, pid, seqNum = struct.unpack("bbHHh",header)
-        if pid == ID:
-            timeSize = struct.calcsize("d")
-            timeSent = struct.unpack("d",recPacket[28:(28 + timeSize)])[0]
-            return('Type: %d Code: %d Checksum: %0x ID: %d SeqNum: %d Time: %d ms')%\
-                  ( ptype, code, checksum, pid, seqNum, (timeReceived - timeSent)*1000)
+        #Fetch the ICMP header from the IP packet
+
         #Fill in end
 
         timeLeft = timeLeft - howLongInSelect
         if timeLeft <= 0:
             return "Request timed out."
+
 
 def sendOnePing(mySocket, destAddr, ID):
     # Header is type (8), code (8), checksum (16), id (16), sequence (16)
@@ -66,6 +58,7 @@ def sendOnePing(mySocket, destAddr, ID):
     myChecksum = checksum(str(header + data))
     # Get the right checksum, and put in the header
     if sys.platform == 'darwin':
+        # Convert 16-bit integers from host to network byte order
         myChecksum = htons(myChecksum) & 0xffff
     else:
         myChecksum = htons(myChecksum)
@@ -75,6 +68,7 @@ def sendOnePing(mySocket, destAddr, ID):
     mySocket.sendto(packet, (destAddr, 1)) # AF_INET address must be tuple, not str
     # Both LISTS and TUPLES consist of a number of objects
     # which can be referenced by their position number within the object.
+
 
 def doOnePing(destAddr, timeout):
     icmp = getprotobyname("icmp")
@@ -98,6 +92,5 @@ def ping(host, timeout=1):
         print(delay)
         time.sleep(1)# one second
     return delay
-
-print("Attempting to ping localhost")
-ping("google.com")  
+    
+ping("google.com")
