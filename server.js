@@ -9,14 +9,14 @@ const parser = new parsers.Readline({
     delimiter: '\r\n'
 });
 //UDP request inorder to get data
-var port = new SerialPort('COM3',{ 
+var potPort = new SerialPort('COM3',{ 
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
     stopBits: 1,
     flowControl: false
 });
-port.pipe(parser); //pipe and parse the data
+potPort.pipe(parser); //pipe and parse the data
 
 //create our server to host our webpage
 var myServer = http.createServer(function(request,response){
@@ -34,7 +34,7 @@ io.on('connection', function(data){
 //using our parser, whenever we receive data we will run this function
 parser.on('data', function(data) {
     //whenever we recieve data, print it
-    console.log('Received data from port: ' + data);
+    console.log('Data recieved from potentialometer: ' + data);
 
     //when we recieve data from the serialport/parser, emit a message data
     io.emit('data', data);
