@@ -1,19 +1,41 @@
 <!doctype html>
 <html>
+    <style>  
+        #secretBox {
+            background-color: rgb(2, 178, 231);
+            padding: 150px;
+            max-width: 250px;
+        }
+    </style>
+
     <head>
         <title>Computer Networking Project</title>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
     </head>
     <body> 
         <h1>Elegoo MEGA 2560 communication to our local server webpage</h1>
-        <div id = 'sample'></div>
+        <div id = 'secretBox'>
+            <h1>Hello there !</h1>
+        </div>
         <script>
             var socket = io();
             socket.on('data',function(data){
                 console.log(data);
-                document.getElementById('sample').innerHTML = data;
+                document.getElementById('secretBox').style.opacity = data+"%"; 
             });
         </script>
+        
+        <button id="lightOn">Turn Light On</button>
+        <button id="lightOff">Turn Light Off</button>
+        <script>
+            var socket1 = io();
+            document.getElementById('lightOn').onclick = function() {
+                socket1.emit('lights', { "status":"1" });
+            };
+            document.getElementById('lightOff').onclick = function(){
+                socket1.emit('lights', { "status":"0" });
+            };
+            </script>
     </body>
         
 </html>
