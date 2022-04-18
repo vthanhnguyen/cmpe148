@@ -1,12 +1,14 @@
 CMPE 148 Project: Arduino Data Communication Between Server and Client
+This project focuses on computer networks by creating the map of a server with a slave(arduino) and a client. The arduino communicates with the server and client in order to give data and control devices.
 
-How to prepare node_modules and package dependencies:
-    - "npm init", creates package.json
+How to run: 
 
-We need to check if the dependency is added, if pulled from github, we just need to type the command.
-Now, inside of package.json, we're using serial port version 9.0.1
-So add that in there and install the node_modules needed by typing:
-    - "npm install ." installs node module dependencies
+
+After pulling cloning from github, we still need the dependencies.
+
+Typing in: "npm install ."
+
+This command will download a folder called node_modules so we can use the API for 'socket.io' and 'serial Port'
 
 To start the server:
     node app.js
