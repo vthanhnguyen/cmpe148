@@ -1,0 +1,22 @@
+{
+  "name": "cmpe148",
+  "version": "1.0.0",
+  "description": "cmpe 148 project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vthanhnguyen/cmpe148.git"
+  },
+  "author": "thanh nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vthanhnguyen/cmpe148/issues"
+  },
+  "homepage": "https://github.com/vthanhnguyen/cmpe148#readme",
+  "dependencies": {
+    "serialport": "^9.0.1"
+  }
+}
