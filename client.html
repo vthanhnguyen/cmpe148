@@ -1,10 +1,19 @@
 <!doctype html>
 <html>
     <head>
-        <h1>Hello it is i</h1>
+        <title>Computer Networking Project</title>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
     </head>
     <body> 
-
+        <h1>Elegoo MEGA 2560 communication to our local server webpage</h1>
+        <div id = 'sample'></div>
+        <script>
+            var socket = io();
+            socket.on('data',function(data){
+                console.log(data);
+                document.getElementById('sample').innerHTML = data;
+            });
+        </script>
     </body>
         
 </html>
