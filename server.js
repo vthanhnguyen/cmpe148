@@ -8,7 +8,7 @@ const parsers = SerialPort.parsers;
 const parser = new parsers.Readline({
     delimiter: '\r\n'
 });
-//UDP request inorder to get data
+//request inorder to get data
 var port = new SerialPort('COM3',{ 
     baudRate: 9600,
     dataBits: 8,
